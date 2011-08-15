@@ -1,0 +1,28 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:modules/f:MainModule.cs" caret="189" fromTop="9" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:modules/f:MainModule.cs" caret="103" fromTop="5" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:modules/f:MainModule.cs" caret="339" fromTop="14" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\</NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>
