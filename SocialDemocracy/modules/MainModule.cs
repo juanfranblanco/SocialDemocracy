@@ -101,9 +101,11 @@ namespace SocialDemocracy.Modules
         public MainModule()
         {
             this.RequiresAuthentication();
+           
 
             Get["/"] = parameters =>
             {
+                if (IsUserLoggedOutOfFacebook()) return this.LogoutAndRedirect("~/");
                 var facebookId = long.Parse(Context.Items[SecurityConventions.AuthenticatedUsernameKey].ToString());
                 var user = InMemoryUserStore.Get(facebookId);
                 var client = new FacebookClient(user.AccessToken);
@@ -113,6 +115,27 @@ namespace SocialDemocracy.Modules
 
 
             
+        }
+
+        public bool IsUserLoggedOutOfFacebook()
+        {
+           
+                try
+                {
+                    var facebookId = long.Parse(Context.Items[SecurityConventions.AuthenticatedUsernameKey].ToString());
+                    var user = InMemoryUserStore.Get(facebookId);
+                    var client = new FacebookClient(user.AccessToken);
+                    dynamic me = client.Get("me");
+                }
+                catch (FacebookOAuthException)
+                {
+                    // facebook web client will auto delete the fb cookie if you get oauth exception
+                    // so you don't need to invalidate the facebook cookie.
+
+                    return true;
+                }
+            return false;
+
         }
     }
 }
