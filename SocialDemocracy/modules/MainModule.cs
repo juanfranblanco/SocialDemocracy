@@ -19,10 +19,11 @@ namespace SocialDemocracy.Modules
 
     public class SecurityModule:NancyModule
     {
+        private string basePath = "http://socialdemocracy.apphb.com/";
 
         public String GetOathRedirectUrl()
         {
-            return "http://socialdemocracy.apphb.com/oath";
+            return basePath + "/oath";
             //return Context.ToFullPath("~/oath");
         }
 
@@ -40,16 +41,20 @@ namespace SocialDemocracy.Modules
                 return Context.GetRedirect(GetFacebookOAuthClient().GetLoginUrl().AbsoluteUri);
             };
 
-            Get["/oath?code={code}"] = x =>
-            {
+            Get["/oath"] = x =>
+               {
+                string code = Context.Request.Query.code;
                 FacebookOAuthResult oauthResult;
 
-                if (FacebookOAuthResult.TryParse(Context.ToFullPath(Context.Request.Url.Path), out oauthResult))
+                var url = Context.Request.Url;
+                var stringUri = basePath + url.Port + "/" + url.Path + url.Query;
+
+                if (FacebookOAuthResult.TryParse(stringUri, out oauthResult))
                 {
                     if (oauthResult.IsSuccess)
                     {
                         var oAuthClient = GetFacebookOAuthClient();
-                        dynamic tokenResult = oAuthClient.ExchangeCodeForAccessToken(x.code);
+                        dynamic tokenResult = oAuthClient.ExchangeCodeForAccessToken(code);
                         string accessToken = tokenResult.access_token;
 
                         DateTime? expiresOn = null;
@@ -73,7 +78,7 @@ namespace SocialDemocracy.Modules
                             Name = (string)me.name,
                         });
 
-                        return this.LoginAndRedirect(userId, expiresOn);
+                        return this.LoginAndRedirect(userId);
 
                     }
                 }
@@ -103,7 +108,7 @@ namespace SocialDemocracy.Modules
                 var user = InMemoryUserStore.Get(facebookId);
                 var client = new FacebookClient(user.AccessToken);
                 dynamic me = client.Get("me");
-                return "<h1>Welcome to Social Democracy!" + me.name + "</h1><p>Nothing to see here at the moment.</p>";
+                return "<h1>Welcome to Social Democracy! " + me.name + "</h1><p>Nothing to see here at the moment.</p>";
             };
 
 
