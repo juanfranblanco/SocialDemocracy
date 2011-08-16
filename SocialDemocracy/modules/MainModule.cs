@@ -22,7 +22,8 @@ namespace SocialDemocracy.Modules
 
         public String GetOathRedirectUrl()
         {
-            return Context.ToFullPath("~/oath");
+            return "http://socialdemocracy.apphb.com/oath";
+            //return Context.ToFullPath("~/oath");
         }
 
         public FacebookOAuthClient GetFacebookOAuthClient()
