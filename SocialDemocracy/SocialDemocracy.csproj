@@ -79,15 +79,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="modules\MainModule.cs" />
+    <Compile Include="AuthorisationPipelines\FacebookAuthenticatedCheckPipeline.cs" />
+    <Compile Include="Modules\FacebookSecurityModule.cs" />
+    <Compile Include="FormsAuthBootstrapper.cs" />
+    <Compile Include="Model\FacebookUser.cs" />
+    <Compile Include="Repository\InMemoryUserCache.cs" />
+    <Compile Include="Modules\MainModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

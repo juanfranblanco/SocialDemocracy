@@ -1,4 +1,5 @@
 <Modules>
   <Module PersistentId="A0015B38-50E6-4653-BD3B-9E8AFB9AF921" ModuleId="SocialDemocracy_1" />
   <Module PersistentId="Nancy, Version=0.7.1.0, Culture=neutral" ModuleId="Nancy" />
+  <Module PersistentId="D2C88800-A2BB-4A60-AC6C-4315AF460528" ModuleId="Nancy.Authorisation.FacebookFormsAuthentication" />
 </Modules>
