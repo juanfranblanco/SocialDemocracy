@@ -16,11 +16,10 @@ using Nancy.Extensions;
 
 namespace SocialDemocracy.Modules
 {
-
     public class SecurityModule:NancyModule
     {
-        //private string basePath = "http://socialdemocracy.apphb.com/";
-        private string basePath = "http://localhost:81";
+        private string basePath = "http://socialdemocracy.apphb.com/";
+       // private string basePath = "http://localhost:81";
 
         public SecurityModule()
         {
@@ -33,7 +32,6 @@ namespace SocialDemocracy.Modules
                {
                 string code = Context.Request.Query.code;
                 FacebookOAuthResult oauthResult;
-
                 var stringUri = GetRequestUriAbsolutePath();
 
                 if (FacebookOAuthResult.TryParse(stringUri, out oauthResult))
@@ -64,7 +62,6 @@ namespace SocialDemocracy.Modules
             return basePath + "/oath";
         }
 
-
         public FacebookOAuthClient GetFacebookOAuthClient()
         {
             var oAuthClient = new FacebookOAuthClient(FacebookApplication.Current);
@@ -77,14 +74,6 @@ namespace SocialDemocracy.Modules
             var oAuthClient = GetFacebookOAuthClient();
             dynamic tokenResult = oAuthClient.ExchangeCodeForAccessToken(code);
             string accessToken = tokenResult.access_token;
-
-            DateTime? expiresOn = null;
-
-            if (tokenResult.ContainsKey("expires"))
-            {
-                expiresOn = DateTimeConvertor.FromUnixTime(tokenResult.expires);
-            }
-
             var facebookClient = new FacebookClient(accessToken);
             dynamic me = facebookClient.Get("me?fields=id,name");
             long facebookId = Convert.ToInt64(me.id);
@@ -93,7 +82,6 @@ namespace SocialDemocracy.Modules
                                       {
                                           UserId = userId,
                                           AccessToken = accessToken,
-                                          Expires = expiresOn,
                                           FacebookId = facebookId,
                                           Name = (string)me.name,
                                       });
@@ -114,7 +102,6 @@ namespace SocialDemocracy.Modules
         {
             this.RequiresAuthentication();
            
-
             Get["/"] = parameters =>
             {
                 var facebookId = long.Parse(Context.Items[SecurityConventions.AuthenticatedUsernameKey].ToString());
@@ -147,7 +134,6 @@ namespace SocialDemocracy.Modules
         }        
     }
 
-
     public static class FacebookAuthenticatedCheckPipeline
     {
         public static Response GetFacebookLoggedOutUserResponse(NancyContext context)
@@ -159,7 +145,6 @@ namespace SocialDemocracy.Modules
                 if (AuthenticatedUserNameHasValue(context))
                 {
                     facebookId = long.Parse(context.Items[SecurityConventions.AuthenticatedUsernameKey].ToString());
-                    InMemoryUserCache.Remove(facebookId.Value);
                     var user = InMemoryUserCache.Get(facebookId.Value);
                     var client = new FacebookClient(user.AccessToken);
                     dynamic me = client.Get("me");
@@ -167,9 +152,7 @@ namespace SocialDemocracy.Modules
             }
             catch (FacebookOAuthException)
             {
-                // facebook web client will auto delete the fb cookie if you get oauth exception
-                // so you don't need to invalidate the facebook cookie.
-                //RemoveFormsAuthenticationCookie(context);
+                //If an exception gets thrown the 
                 RemoveUserFromCache(context, facebookId);
                 return new Response() { StatusCode = HttpStatusCode.Unauthorized };
             }
@@ -194,7 +177,6 @@ namespace SocialDemocracy.Modules
         public Guid UserId { get; set;}
         public long FacebookId { get; set; }
         public string AccessToken { get; set; }
-        public DateTime? Expires { get; set; }
         public string Name { get; set; }
     }
 
