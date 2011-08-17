@@ -8,11 +8,47 @@
   </SettingsComponent>
   <RecentFiles>
     <RecentFiles>
-      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:modules/f:MainModule.cs" caret="138" fromTop="6" />
+      <File id="d:Miscellaneous Files/f:Nancy.Security.ModuleSecurity.cs/l:E!?Users?JuanFran?Documents?Visual Studio 2010?Projects?SocialDemocracy?_ReSharper.SocialDemocracy?DecompilerCache?metadata?Nancy-b873?Nancy.Security.ModuleSecurity.cs" caret="685" fromTop="17" />
+      <File id="d:Miscellaneous Files/f:Nancy.Extensions.ContextExtensions.cs/l:E!?Users?JuanFran?Documents?Visual Studio 2010?Projects?SocialDemocracy?_ReSharper.SocialDemocracy?DecompilerCache?metadata?Nancy-b873?Nancy.Extensions.ContextExtensions.cs" caret="273" fromTop="5" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/f:FormsAuthBootstrapper.cs" caret="507" fromTop="15" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="28" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Model/f:FacebookUser.cs" caret="210" fromTop="8" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:AuthorisationPipelines/f:FacebookAuthenticatedCheckPipeline.cs" caret="69" fromTop="4" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:FacebookSecurityModule.cs" caret="390" fromTop="14" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Repository/f:InMemoryUserCache.cs" caret="191" fromTop="6" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/f:Web.config" caret="619" fromTop="16" />
     </RecentFiles>
     <RecentEdits>
-      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:modules/f:MainModule.cs" caret="103" fromTop="5" />
-      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:modules/f:MainModule.cs" caret="339" fromTop="14" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="235" fromTop="18" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="24" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="22" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="20" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="16" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="22" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="40" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="18" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="20" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="235" fromTop="13" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="388" fromTop="16" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="30" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="235" fromTop="9" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="235" fromTop="17" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="235" fromTop="17" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="235" fromTop="16" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="235" fromTop="26" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="17" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="18" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="29" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="839" fromTop="17" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="235" fromTop="15" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/f:FormsAuthBootstrapper.cs" caret="673" fromTop="17" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:MainModule.cs" caret="912" fromTop="10" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:FacebookSecurityModule.cs" caret="3535" fromTop="28" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:FacebookSecurityModule.cs" caret="3535" fromTop="27" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:FacebookSecurityModule.cs" caret="2381" fromTop="10" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:FacebookSecurityModule.cs" caret="2642" fromTop="16" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/d:Modules/f:FacebookSecurityModule.cs" caret="2112" fromTop="12" />
+      <File id="A0015B38-50E6-4653-BD3B-9E8AFB9AF921/f:Web.config" caret="872" fromTop="21" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -25,4 +61,176 @@
     <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.10\bin\net-2.0\</NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="using" priority="0" />
+      <Item value="Nancy" priority="3" />
+      <Item value="Authentication.Forms" priority="0" />
+      <Item value="Facebook" priority="0" />
+      <Item value="public" priority="11" />
+      <Item value="Guid`0" priority="4" />
+      <Item value="Base64Helpers`0" priority="0" />
+      <Item value="Helpers" priority="0" />
+      <Item value="HttpUtility`0" priority="0" />
+      <Item value="Context" priority="7" />
+      <Item value="Get" priority="0" />
+      <Item value="var" priority="3" />
+      <Item value="oathRedirectUrl" priority="0" />
+      <Item value="oAuthClient" priority="1" />
+      <Item value="static" priority="3" />
+      <Item value="string" priority="2" />
+      <Item value="this" priority="5" />
+      <Item value="url" priority="8" />
+      <Item value="String`0" priority="2" />
+      <Item value="code" priority="0" />
+      <Item value="x" priority="1" />
+      <Item value="return" priority="13" />
+      <Item value="redirectUrl" priority="0" />
+      <Item value="UserId" priority="0" />
+      <Item value="expiresOn" priority="1" />
+      <Item value="GetOathRedirectUrl`0" priority="3" />
+      <Item value="FacebookOAuthClient`0" priority="0" />
+      <Item value="GetFacebookOAuthClient`0" priority="0" />
+      <Item value="IUsernameMapper`0" priority="1" />
+      <Item value="users" priority="1" />
+      <Item value="indentifier" priority="0" />
+      <Item value="if" priority="6" />
+      <Item value="user" priority="5" />
+      <Item value="null" priority="6" />
+      <Item value="default" priority="0" />
+      <Item value="DateTime`0" priority="0" />
+      <Item value="SecurityConventions`0" priority="2" />
+      <Item value="fbFacebookClient" priority="0" />
+      <Item value="facebookClient" priority="0" />
+      <Item value="FacebookBatchParameter`0" priority="0" />
+      <Item value="me" priority="0" />
+      <Item value="class" priority="2" />
+      <Item value="NancyModule`0" priority="0" />
+      <Item value="SecurityModule`0" priority="0" />
+      <Item value="Request`0" priority="0" />
+      <Item value="Uri`0" priority="0" />
+      <Item value="new" priority="2" />
+      <Item value="Uri" priority="0" />
+      <Item value="private" priority="0" />
+      <Item value="basePath" priority="0" />
+      <Item value="stringUri" priority="0" />
+      <Item value="void" priority="0" />
+      <Item value="FacebookClient`0" priority="0" />
+      <Item value="false" priority="1" />
+      <Item value="NancyContext`0" priority="0" />
+      <Item value="CheckUserLoggedOutOfFacebook`0" priority="0" />
+      <Item value="FormsAuthentication`0" priority="3" />
+      <Item value="context" priority="11" />
+      <Item value="formsAuthConfiguration" priority="0" />
+      <Item value="configuration" priority="0" />
+      <Item value="else" priority="1" />
+      <Item value="RemoveFormsAuthenticationCookie`0" priority="1" />
+      <Item value="Continue" priority="0" />
+      <Item value="Response" priority="0" />
+      <Item value="StatusCode" priority="0" />
+      <Item value="InMemoryUserStore`0" priority="1" />
+      <Item value="long" priority="0" />
+      <Item value="Get`0" priority="0" />
+      <Item value="facebookId" priority="4" />
+      <Item value="Decimal`0" priority="0" />
+      <Item value="throw" priority="0" />
+      <Item value="Exception`0" priority="0" />
+      <Item value="InMemoryUserCache`0" priority="0" />
+      <Item value="client" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:SocialDemocracy.Modules.MainModule">
+      <Item value="LogoutAndRedirect`0" priority="0" />
+      <Item value="LoginAndRedirect`0" priority="0" />
+      <Item value="RequiresAuthentication`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Nancy.NancyContext">
+      <Item value="ToFullPath`0" priority="1" />
+      <Item value="GetRedirect`0" priority="0" />
+      <Item value="Request" priority="9" />
+      <Item value="Response" priority="2" />
+      <Item value="Items" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Nancy.Request">
+      <Item value="Url" priority="5" />
+      <Item value="Query" priority="0" />
+      <Item value="Session" priority="0" />
+      <Item value="Cookies" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Nancy.Url">
+      <Item value="ToString`0" priority="1" />
+      <Item value="Path" priority="3" />
+      <Item value="Query" priority="0" />
+      <Item value="Port" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Concat`0" priority="0" />
+      <Item value="Join`0" priority="0" />
+      <Item value="IsNullOrEmpty`0" priority="0" />
+      <Item value="Empty" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Nancy.Authentication.Forms.FormsAuthentication">
+      <Item value="UserLoggedInRedirectResponse`0" priority="0" />
+      <Item value="LogOutAndRedirectResponse`0" priority="0" />
+      <Item value="FormsAuthenticationCookieName" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Guid">
+      <Item value="NewGuid`0" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IDictionary`2">
+      <Item value="Where`1" priority="2" />
+      <Item value="First`1" priority="1" />
+      <Item value="Contains`0" priority="2" />
+      <Item value="Remove`0" priority="1" />
+      <Item value="ContainsKey`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.KeyValuePair`2">
+      <Item value="Value" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FacebookUser">
+      <Item value="UserId" priority="0" />
+      <Item value="FacebookId" priority="1" />
+      <Item value="Name" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.IEnumerable`1">
+      <Item value="FirstOrDefault`1" priority="0" />
+      <Item value="Count`1" priority="0" />
+      <Item value="First`1" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Int64">
+      <Item value="ToString`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Object">
+      <Item value="name" priority="0" />
+      <Item value="GetHashCode`0" priority="2" />
+      <Item value="ToString`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:FormsAuthBootstrapper">
+      <Item value="AfterRequest" priority="0" />
+      <Item value="BeforeRequest" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Nancy.AfterPipeline">
+      <Item value="AddItemToEndOfPipeline`0" priority="0" />
+      <Item value="AddItemToStartOfPipeline`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Nancy.HttpStatusCode">
+      <Item value="Unauthorized" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Nancy.Response">
+      <Item value="Contents" priority="0" />
+      <Item value="StatusCode" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Nancy.Security.SecurityConventions">
+      <Item value="AuthenticatedUsernameKey" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Nullable`1">
+      <Item value="Value" priority="3" />
+      <Item value="HasValue" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@InMemoryUserStore">
+      <Item value="Remove`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@InMemoryUserCache">
+      <Item value="Remove`0" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
 </Configuration>
