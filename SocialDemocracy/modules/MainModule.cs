@@ -19,20 +19,8 @@ namespace SocialDemocracy.Modules
 
     public class SecurityModule:NancyModule
     {
-        private string basePath = "http://socialdemocracy.apphb.com/";
-
-        public String GetOathRedirectUrl()
-        {
-            return basePath + "/oath";
-            //return Context.ToFullPath("~/oath");
-        }
-
-        public FacebookOAuthClient GetFacebookOAuthClient()
-        {
-            var oAuthClient = new FacebookOAuthClient(FacebookApplication.Current);
-            oAuthClient.RedirectUri = new Uri(GetOathRedirectUrl());
-            return oAuthClient;
-        }
+        //private string basePath = "http://socialdemocracy.apphb.com/";
+        private string basePath = "http://localhost:81";
 
         public SecurityModule()
         {
@@ -46,38 +34,15 @@ namespace SocialDemocracy.Modules
                 string code = Context.Request.Query.code;
                 FacebookOAuthResult oauthResult;
 
-                var url = Context.Request.Url;
-                var stringUri = basePath + url.Port + "/" + url.Path + url.Query;
+                var stringUri = GetRequestUriAbsolutePath();
 
                 if (FacebookOAuthResult.TryParse(stringUri, out oauthResult))
                 {
                     if (oauthResult.IsSuccess)
                     {
-                        var oAuthClient = GetFacebookOAuthClient();
-                        dynamic tokenResult = oAuthClient.ExchangeCodeForAccessToken(code);
-                        string accessToken = tokenResult.access_token;
-
-                        DateTime? expiresOn = null;
-
-                        if (tokenResult.ContainsKey("expires"))
-                        {
-                            expiresOn = DateTimeConvertor.FromUnixTime(tokenResult.expires);
-                        }
-
-                        var facebookClient = new FacebookClient(accessToken);
-                        dynamic me = facebookClient.Get("me?fields=id,name");
-                        long facebookId = Convert.ToInt64(me.id);
+                        //Assign a temporary GUID to identify the user via cookies, we follow Nancy Forms Authentication to prevent storing facebook ids or tokens in cookies.
                         var userId = Guid.NewGuid();
-
-                        InMemoryUserStore.Add(new FacebookUser
-                        {
-                            UserId = userId,
-                            AccessToken = accessToken,
-                            Expires = expiresOn,
-                            FacebookId = facebookId,
-                            Name = (string)me.name,
-                        });
-
+                        AddAuthenticatedUserToCache(code, userId);
                         return this.LoginAndRedirect(userId);
 
                     }
@@ -93,7 +58,54 @@ namespace SocialDemocracy.Modules
 
             };
         }
+
+        public String GetOathRedirectUrl()
+        {
+            return basePath + "/oath";
+        }
+
+
+        public FacebookOAuthClient GetFacebookOAuthClient()
+        {
+            var oAuthClient = new FacebookOAuthClient(FacebookApplication.Current);
+            oAuthClient.RedirectUri = new Uri(GetOathRedirectUrl());
+            return oAuthClient;
+        }
+
+        private void AddAuthenticatedUserToCache(string code, Guid userId)
+        {
+            var oAuthClient = GetFacebookOAuthClient();
+            dynamic tokenResult = oAuthClient.ExchangeCodeForAccessToken(code);
+            string accessToken = tokenResult.access_token;
+
+            DateTime? expiresOn = null;
+
+            if (tokenResult.ContainsKey("expires"))
+            {
+                expiresOn = DateTimeConvertor.FromUnixTime(tokenResult.expires);
+            }
+
+            var facebookClient = new FacebookClient(accessToken);
+            dynamic me = facebookClient.Get("me?fields=id,name");
+            long facebookId = Convert.ToInt64(me.id);
+ 
+            InMemoryUserCache.Add(new FacebookUser
+                                      {
+                                          UserId = userId,
+                                          AccessToken = accessToken,
+                                          Expires = expiresOn,
+                                          FacebookId = facebookId,
+                                          Name = (string)me.name,
+                                      });
+        }
+
+        private string GetRequestUriAbsolutePath()
+        {
+            var url = Context.Request.Url;
+            return basePath + url.Port + "/" + url.Path + url.Query;
+        }
     }
+
 
     public class MainModule:NancyModule
     {
@@ -105,45 +117,17 @@ namespace SocialDemocracy.Modules
 
             Get["/"] = parameters =>
             {
-               // if (IsUserLoggedOutOfFacebook()) return this.LogoutAndRedirect("~/");
                 var facebookId = long.Parse(Context.Items[SecurityConventions.AuthenticatedUsernameKey].ToString());
-                var user = InMemoryUserStore.Get(facebookId);
+                var user = InMemoryUserCache.Get(facebookId);
                 var client = new FacebookClient(user.AccessToken);
                 dynamic me = client.Get("me");
-                return "<h1>Welcome to Social Democracy! " + me.name + "</h1><p>Nothing to see here at the moment.</p>";
+                return "<h1>Welcome to Social Democracy! " + me.name + "</h1><p>You have logged in using facebook</p>";
             };
-
-
             
-        }
-
-        
+        }  
     }
 }
      
-
-
-    /*
-     *  Check if logged out
-            var fbWebContext = FacebookWebContext.Current;
-            if (fbWebContext.IsAuthorized() && fbWebContext.UserId > 0)
-            {
-                try
-                {
-                    var fb = new FacebookWebClient(fbWebContext);
-                    dynamic result = fb.Get("/me");
-                }
-                catch(FacebookOAuthException){
-                // facebook web client will auto delete the fb cookie if you get oauth exception
-                // so you don't need to invalidate the facebook cookie.
-  
-                 Response.Redirect("~/login.aspx");
-                }
-            }
-     * 
-     */
-
-
     public class FormsAuthBootstrapper : DefaultNancyBootstrapper
     {
         protected override void InitialiseInternal(TinyIoC.TinyIoCContainer container)
@@ -158,34 +142,49 @@ namespace SocialDemocracy.Modules
                 };
 
             FormsAuthentication.Enable(this, formsAuthConfiguration);
-            this.AfterRequest.AddItemToStartOfPipeline(GetFacebookLoggedOutUserResponse(formsAuthConfiguration));
+            this.BeforeRequest.AddItemToEndOfPipeline(FacebookAuthenticatedCheckPipeline.GetFacebookLoggedOutUserResponse);
             
+        }        
+    }
+
+
+    public static class FacebookAuthenticatedCheckPipeline
+    {
+        public static Response GetFacebookLoggedOutUserResponse(NancyContext context)
+        {
+            long? facebookId = null;
+            try
+            {
+
+                if (AuthenticatedUserNameHasValue(context))
+                {
+                    facebookId = long.Parse(context.Items[SecurityConventions.AuthenticatedUsernameKey].ToString());
+                    InMemoryUserCache.Remove(facebookId.Value);
+                    var user = InMemoryUserCache.Get(facebookId.Value);
+                    var client = new FacebookClient(user.AccessToken);
+                    dynamic me = client.Get("me");
+                }
+            }
+            catch (FacebookOAuthException)
+            {
+                // facebook web client will auto delete the fb cookie if you get oauth exception
+                // so you don't need to invalidate the facebook cookie.
+                //RemoveFormsAuthenticationCookie(context);
+                RemoveUserFromCache(context, facebookId);
+                return new Response() { StatusCode = HttpStatusCode.Unauthorized };
+            }
+            return context.Response;
         }
 
-
-        private static Action<NancyContext> GetFacebookLoggedOutUserResponse(FormsAuthenticationConfiguration configuration)
+        private static void RemoveUserFromCache(NancyContext context, long? facebookId)
         {
-            
-            return context =>
-            {
-                if (context.Request.Cookies.ContainsKey(FormsAuthentication.FormsAuthenticationCookieName))
-                {
-                    try
-                    {
-                        var facebookId = long.Parse(context.Items[SecurityConventions.AuthenticatedUsernameKey].ToString());
-                        var user = InMemoryUserStore.Get(facebookId);
-                        var client = new FacebookClient(user.AccessToken);
-                        dynamic me = client.Get("me");
-                    }
-                    catch (FacebookOAuthException)
-                    {
-                        // facebook web client will auto delete the fb cookie if you get oauth exception
-                        // so you don't need to invalidate the facebook cookie.
-                        var cookie = context.Request.Cookies[FormsAuthentication.FormsAuthenticationCookieName];
-                        context.Request.Cookies.Remove(cookie);
-                    }
-                }
-             };
+            context.Items[SecurityConventions.AuthenticatedUsernameKey] = null;
+            if (facebookId.HasValue) InMemoryUserCache.Remove(facebookId.Value);
+        }
+
+        private static bool AuthenticatedUserNameHasValue(NancyContext context)
+        {
+            return context.Items.ContainsKey(SecurityConventions.AuthenticatedUsernameKey) && context.Items[SecurityConventions.AuthenticatedUsernameKey] != null && context.Items[SecurityConventions.AuthenticatedUsernameKey].ToString() != String.Empty;
         }
 
     }
@@ -199,7 +198,7 @@ namespace SocialDemocracy.Modules
         public string Name { get; set; }
     }
 
-    public class InMemoryUserStore:IUsernameMapper
+    public class InMemoryUserCache:IUsernameMapper
     {
         static readonly IDictionary<long, FacebookUser> users = new ConcurrentDictionary<long, FacebookUser>();
 
@@ -212,10 +211,20 @@ namespace SocialDemocracy.Modules
         {
             return users[facebookId];
         }
+
+        public static void Remove(long facebookId)
+        {
+            users.Remove(facebookId);
+        }
     
         public string GetUsernameFromIdentifier(Guid identifier)
         {
-            var user = users.FirstOrDefault(x => x.Value.UserId == identifier);
-            return user.Value.FacebookId.ToString();
+            var usersFound = users.Where(x => x.Value.UserId == identifier);
+            if (usersFound.Count() > 0)
+            {
+                return usersFound.First().Value.FacebookId.ToString();
+            }
+            //returning null will trigger a non authenticated user
+            return null;
         }
 }
